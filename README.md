@@ -5,14 +5,14 @@ An optionally-secure, full-duplex TCP command server and client.
 ## Server
 
 ```typescript
-// An insecure CommandServer
+// An insecure CommandServer (`createServer` from `node:net`)
 const server = new CommandServer({
   host: "localhost",
   port: 3351,
   secure: false,
 });
 
-// A secure CommandServer
+// A secure CommandServer (`createServer` from `node:tls`)
 // https://nodejs.org/api/tls.html#new-tlstlssocketsocket-options
 const server = new CommandServer({
   host: "localhost",
@@ -32,14 +32,14 @@ server.command(0, async (payload: any, connection: Connection) => {
 ## Client
 
 ```typescript
-// An insecure client
+// An insecure client (`Socket` from `node:net`)
 const client = new CommandClient({
   host: "localhost",
   port: 3351,
   secure: false,
 });
 
-// A secure client
+// A secure client (`TLSSocket` from `node:tls`)
 const client = new CommandClient({
   host: "localhost",
   port: 3351,
