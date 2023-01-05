@@ -1,0 +1,21 @@
+{
+  "name": "@prsm/duplex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/src/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "types": "lib/src/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "nvms",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.18"
+  }
+}
