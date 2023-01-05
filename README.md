@@ -58,7 +58,7 @@ try {
 }
 
 // Receiving the response in a callback
-const callback = (response: any, error: Error) => {
+const callback = (response: any, error: CodeError) => {
   if (error) {
     console.error(error.code);
     return;
