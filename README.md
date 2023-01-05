@@ -43,6 +43,7 @@ const client = new CommandClient({
 const client = new CommandClient({
   host: "localhost",
   port: 3351,
+  secure: true,
   key: fs.readFileSync("certs/client/client.key"),
   cert: fs.readFileSync("certs/client/client.crt"),
   ca: fs.readFileSync("certs/ca/ca.crt"),
