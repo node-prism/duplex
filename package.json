@@ -8,7 +8,7 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "types": "lib/src/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
