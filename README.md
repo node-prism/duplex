@@ -24,6 +24,8 @@ const server = new CommandServer({
   requestCert: true, 
 });
 
+// -------------------
+// Defining a command handler
 server.command(0, async (payload: any, connection: Connection) => {
   return { ok: "OK" };
 });
@@ -49,6 +51,7 @@ const client = new CommandClient({
   ca: fs.readFileSync("certs/ca/ca.crt"),
 });
 
+// -------------------
 // Awaiting the response
 try {
   const response = await client.command(0, { some: "payload" }, 1000);
@@ -58,7 +61,7 @@ try {
   console.error(error);
 }
 
-// Receiving the response in a callback
+// ...or receiving the response in a callback
 const callback = (response: any, error: CodeError) => {
   if (error) {
     console.error(error.code);
@@ -68,5 +71,6 @@ const callback = (response: any, error: CodeError) => {
   // response is { ok: "OK" }
 };
 
+// Sending a command to the server
 client.command(0, { some: "payload" }, 1000, callback);
 ```
