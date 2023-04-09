@@ -4,7 +4,7 @@
 import { EventEmitter } from "node:events";
 import { Duplex } from "node:stream";
 export declare class Connection extends EventEmitter {
-    duplex: Duplex;
+    private readonly duplex;
     private buffer;
     constructor(duplex: Duplex);
     private applyListeners;

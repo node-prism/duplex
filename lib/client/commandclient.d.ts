@@ -33,7 +33,7 @@ export declare class CommandClient extends QueueClient {
     private callbacks;
     constructor(options: TokenClientOptions);
     private init;
-    command(command: number, payload: any, expiresIn?: number, callback?: Function | null): Promise<unknown>;
+    command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: Error | null) => void | undefined): Promise<unknown>;
     private createTimeoutPromise;
     private createResponsePromise;
 }
