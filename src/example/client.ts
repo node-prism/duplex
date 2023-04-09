@@ -16,10 +16,12 @@ async function main() {
       return;
     }
 
-    console.log("RECV [0]", result);
+   console.log("RECV [0]", result);
+   client.close();
   };
 
   client.command(0, payload, 10, callback);
+
 }
 
 main();
