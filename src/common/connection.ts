@@ -5,7 +5,7 @@ import { Message, NEWLINE } from "./message";
 const CLOSE_TOKEN = Buffer.from("\\\n");
 
 export class Connection extends EventEmitter {
-  duplex: Duplex;
+  private readonly duplex: Duplex;
   private buffer = Buffer.allocUnsafe(0);
 
   constructor(duplex: Duplex) {
