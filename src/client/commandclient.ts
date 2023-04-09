@@ -159,7 +159,7 @@ export class CommandClient extends QueueClient {
     });
   }
 
-  async command(command: number, payload: any, expiresIn: number = 30_000, callback: Function | null = null) {
+  async command(command: number, payload: any, expiresIn: number = 30_000, callback: (result: any, error: Error | null) => void | undefined = undefined) {
     if (command === 255) {
       throw new CodeError("Command 255 is reserved.", "ERESERVED", "CommandError");
     }
@@ -183,7 +183,7 @@ export class CommandClient extends QueueClient {
         const ret = await Promise.race([response, timeout]);
 
         try {
-          callback(ret, null);
+          callback(ret, undefined);
         } catch (callbackError) { /* */ }
       } catch (error) {
         callback(undefined, error);
