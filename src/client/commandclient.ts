@@ -130,7 +130,7 @@ class QueueClient extends TokenClient {
 }
 
 export class CommandClient extends QueueClient {
-  private ids = new IdManager(Math.pow(2, 16) - 1);
+  private ids = new IdManager(0xFFFF);
   private callbacks: {
     [id: number]: (error: Error | null, result?: any) => void
   } = {};
