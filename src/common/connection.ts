@@ -44,7 +44,7 @@ export class Connection extends EventEmitter {
   }
 
   get isDead() {
-    return !this.duplex.writable;
+    return !this.duplex.writable || !this.duplex.readable;
   }
 
   send(buffer: Buffer) {
