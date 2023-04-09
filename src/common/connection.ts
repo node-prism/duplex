@@ -24,7 +24,7 @@ export class Connection extends EventEmitter {
   }
 
   private parse() {
-    while (true) {
+    while (this.buffer.length > 0) {
       const i = this.buffer.indexOf(NEWLINE);
 
       if (i === -1) break;
