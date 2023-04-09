@@ -19,8 +19,7 @@ export class Command {
     if (buffer.length < 3) throw new TypeError(`Token too short! Expected at least 3 bytes, got ${buffer.length}!`);
     const id = buffer.readUInt16LE(0);
     const command = buffer.readUInt8(2);
-    const payloadString = buffer.toString("utf8", 3);
-    const payload = JSON.parse(payloadString);
+    const payload = JSON.parse(buffer.toString("utf8", 3));
     return { id, command, payload };
   }
 }
