@@ -127,6 +127,10 @@ class QueueClient extends TokenClient {
       }
     });
   }
+
+  close() {
+    return super.close();
+  }
 }
 
 export class CommandClient extends QueueClient {
@@ -216,5 +220,9 @@ export class CommandClient extends QueueClient {
         }
       }
     });
+  }
+
+  close() {
+    return super.close();
   }
 }
