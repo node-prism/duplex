@@ -2,20 +2,29 @@
   "name": "@prsm/duplex",
   "version": "1.1.4",
   "description": "",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify"
   },
   "keywords": [],
   "author": "nvms",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
   }
 }
