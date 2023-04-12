@@ -27,6 +27,7 @@ declare class QueueClient extends TokenClient {
     constructor(options: TokenClientOptions);
     sendBuffer(buffer: Buffer, expiresIn: number): void;
     private applyEvents;
+    close(): boolean;
 }
 export declare class CommandClient extends QueueClient {
     private ids;
@@ -36,5 +37,6 @@ export declare class CommandClient extends QueueClient {
     command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: Error | null) => void | undefined): Promise<unknown>;
     private createTimeoutPromise;
     private createResponsePromise;
+    close(): boolean;
 }
 export {};
