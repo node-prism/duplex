@@ -20,7 +20,9 @@ export class Connection extends EventEmitter {
       this.parse();
     });
 
-    this.duplex.on("close", () => this.emit("close"));
+    this.duplex.on("close", () => {
+      this.emit("close");
+    });
   }
 
   private parse() {

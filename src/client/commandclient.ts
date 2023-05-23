@@ -99,6 +99,10 @@ class TokenClient extends EventEmitter {
       this.emit("remoteClose", connection);
     });
 
+    connection.on("close", () => {
+      this.emit("close", connection);
+    });
+
     this.connection = connection;
   }
 }
@@ -163,7 +167,7 @@ export class CommandClient extends QueueClient {
     });
   }
 
-  async command(command: number, payload: any, expiresIn: number = 30_000, callback: (result: any, error: Error | null) => void | undefined = undefined) {
+  async command(command: number, payload: any, expiresIn: number = 30_000, callback: (result: any, error: CodeError | null) => void | undefined = undefined) {
     if (command === 255) {
       throw new CodeError("Command 255 is reserved.", "ERESERVED", "CommandError");
     }

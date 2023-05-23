@@ -1,5 +1,5 @@
 import { EventEmitter } from "node:events";
-import net from "node:net";
+import net, { Socket } from "node:net";
 import tls from "node:tls";
 import { CodeError } from "../common/codeerror";
 import { Command } from "../common/command";
@@ -15,7 +15,7 @@ export class TokenServer extends EventEmitter {
   connections: Connection[] = [];
 
   private options: TokenServerOptions;
-  private server: tls.Server | net.Server;
+  public server: tls.Server | net.Server;
   private hadError: boolean;
 
   status: Status;
@@ -68,7 +68,7 @@ export class TokenServer extends EventEmitter {
   applyListeners() {
     this.server.on("listening", () => {
       this.status = Status.ONLINE;
-      this.emit("connect");
+      this.emit("listening");
     });
 
     this.server.on("tlsClientError", (error) => {
@@ -90,7 +90,7 @@ export class TokenServer extends EventEmitter {
       this.emit("close", this.hadError);
     });
 
-    this.server.on("secureConnection", (socket) => {
+    this.server.on("secureConnection", (socket: Socket) => {
       const connection = new Connection(socket);
       this.connections.push(connection);
 
@@ -104,7 +104,7 @@ export class TokenServer extends EventEmitter {
       });
     });
 
-    this.server.on("connection", (socket) => {
+    this.server.on("connection", (socket: Socket) => {
       if (this.options.secure) return;
 
       const connection = new Connection(socket);
