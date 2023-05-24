@@ -3,6 +3,12 @@ import net from 'node:net';
 import tls from 'node:tls';
 import { Duplex } from 'node:stream';
 
+declare class CodeError extends Error {
+    code: string;
+    name: string;
+    constructor(message: string, code?: string, name?: string);
+}
+
 declare enum Status {
     ONLINE = 3,
     CONNECTING = 2,
@@ -38,7 +44,7 @@ declare class CommandClient extends QueueClient {
     private callbacks;
     constructor(options: TokenClientOptions);
     private init;
-    command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: Error | null) => void | undefined): Promise<unknown>;
+    command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: CodeError | null) => void | undefined): Promise<unknown>;
     private createTimeoutPromise;
     private createResponsePromise;
     close(): boolean;
@@ -62,7 +68,7 @@ type TokenServerOptions = tls.TlsOptions & net.ListenOptions & net.SocketConstru
 declare class TokenServer extends EventEmitter {
     connections: Connection[];
     private options;
-    private server;
+    server: tls.Server | net.Server;
     private hadError;
     status: Status;
     constructor(options: TokenServerOptions);
@@ -82,12 +88,6 @@ declare class CommandServer extends TokenServer {
      */
     command(command: number, fn: CommandFn): void;
     private runCommand;
-}
-
-declare class CodeError extends Error {
-    code: string;
-    name: string;
-    constructor(message: string, code?: string, name?: string);
 }
 
 export { CodeError, CommandClient, CommandServer, Connection, Status };

@@ -99,10 +99,6 @@ class TokenClient extends EventEmitter {
       this.emit("remoteClose", connection);
     });
 
-    connection.on("close", () => {
-      this.emit("close", connection);
-    });
-
     this.connection = connection;
   }
 }
