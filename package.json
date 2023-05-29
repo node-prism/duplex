@@ -17,13 +17,15 @@
   },
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify",
+    "release": "bumpp package.json --commit 'Release %s' --push --tag && pnpm publish --access public"
   },
   "keywords": [],
   "author": "nvms",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "bumpp": "^9.1.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
   }
