@@ -1,5 +1,7 @@
 # duplex
 
+[![NPM version](https://img.shields.io/npm/v/@prsm/duplex?color=a1b858&label=)](https://www.npmjs.com/package/@prsm/duplex)
+
 An optionally-secure, full-duplex TCP command server and client.
 
 ## Server
