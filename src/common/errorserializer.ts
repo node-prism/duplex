@@ -7,17 +7,10 @@ export interface SerializedError {
 
 export class ErrorSerializer {
   // Converts an Error into a standard object.
-	static serialize (error: Error): SerializedError {
-		const data = {
-			message: error.message,
-			name: error.name,
-			stack: error.stack,
-		};
-
-		Object.assign(data, error);
-
-		return data as SerializedError;
-	}
+  static serialize(error: Error): SerializedError {
+    const { message, name, stack } = error;
+    return { message, name, stack, ...error };
+  }
 
 	// Converts an object into an Error instance.
 	static deserialize (data: SerializedError) {
