@@ -90,4 +90,4 @@ declare class CommandServer extends TokenServer {
     private runCommand;
 }
 
-export { CodeError, CommandClient, CommandServer, Connection, Status };
+export { CodeError, CommandClient, CommandServer, Connection, Status, TokenClientOptions, TokenServerOptions };
