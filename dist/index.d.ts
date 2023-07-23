@@ -44,7 +44,7 @@ declare class CommandClient extends QueueClient {
     private callbacks;
     constructor(options: TokenClientOptions);
     private init;
-    command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: CodeError | null) => void | undefined): Promise<unknown>;
+    command(command: number, payload: any, expiresIn?: number, callback?: (result: any, error: CodeError | Error | null) => void | undefined): Promise<unknown>;
     private createTimeoutPromise;
     private createResponsePromise;
     close(): boolean;
